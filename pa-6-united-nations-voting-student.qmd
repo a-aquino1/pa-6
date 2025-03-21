@@ -139,29 +139,29 @@ Comment on the following code, what is happening in each line?  One way to appro
 
 ```{r}
 unvotes |> 
-  count(country, vote) |> #comment
-  group_by(country) |> #comment
-  mutate(total = sum(n)) |> #comment 
-  mutate(prop_vote = n/total) |> #comment
+  count(country, vote) |> #counting by country and votes
+  group_by(country) |> #grouping by countries
+  mutate(total = sum(n)) |> #creating a new column called "total" which is the sum of n 
+  mutate(prop_vote = n/total) |> #creating a new column called "prop_vote" which n divided by the total
   filter(country %in% c("United States", "Canada", 
                         "Germany", "France",
                         "Italy", "Japan",
-                        "United Kingdom")) |> #comment
+                        "United Kingdom")) |> #filtering to keep in the provided countries
   ggplot(aes(x = country, y = prop_vote, 
-             fill = vote)) + #comment
-  geom_col(position = position_stack()) + #comment
+             fill = vote)) + #creating plot proportion of votes per country
+  geom_col(position = position_stack()) + #positioning columns
   labs(x = "Group of Seven Countries",
        y = "Proportion of Votes",
        title = "Voting Record of the G7",
-       fill = "Vote") + #comment
-  theme_minimal() +  #comment
-  scale_fill_viridis_d(end = 0.8) + #comment
-  coord_flip() #comment
+       fill = "Vote") + #assigning titles and names to axis on graph
+  theme_minimal() +  #background of graph
+  scale_fill_viridis_d(end = 0.8) + #color on the actual graph
+  coord_flip() #flips the coordinate system
 ```
 
 > Describe what the graph above demonstrates above UN voting records for the G7 
   
-  
+  The graph above demonstrates the proportion per country of how many people voted "yes", "no", and refused to vote.
   
   
 
