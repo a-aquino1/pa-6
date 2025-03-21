@@ -138,6 +138,7 @@ The first data set, `unvotes` contains data on the `rcid` which is the roll call
 Comment on the following code, what is happening in each line?  One way to approach seeing what each line does is to highlight the code from before the `pipe` of that line up to the data `unvotes` and use `CTRL + ENTER` to run just the highlighted lines.  
 
 ```{r}
+#| label: commenting-proportion-votes
 unvotes |> 
   count(country, vote) |> #counting by country and votes
   group_by(country) |> #grouping by countries
@@ -175,17 +176,20 @@ unvotes |>
 The second data set, `roll_calls` has more information on the type of vote, the importance, whether it was a resolution, and date of the vote.  What does eh following code do?
 
 ```{r}
+#| label: distinct-function
 roll_calls |> 
   distinct(short)
+#ran the given code
 ```
 
-> Description of code results
+> Prints out the row named short from the roll_call column.
 
 
 
 We can use the individual data for `roll_calls` to look at the number of votes per year over time.
 
 ```{r}
+#| label: ggplot-of-roll-call
 roll_calls |> 
   mutate(year = lubridate::year(date)) |> #extracts the year from the date value and creates a new `year` column
   count(year) |> #counts how many votes there were per year assuming each line is an single voting instance
@@ -200,19 +204,21 @@ roll_calls |>
 
 What information is missing from the above graphic that might be useful in understanding the issues the UN commonly votes on?
 
-> Insert Answer Here
+> WHat countries are voting? What are they voting on? 
 
 
 
 We could try and look at the short descriptions, `short`, for each vote with the following code. 
 ```{r}
+#| label: short-function
 roll_calls |> 
   count(short)
+#ran the given code
 ```
 
 Does the above information help us understand the voting issues of the UN over time? Explain.
 
-> Insert your answer here
+> The information above gives a general idea of what the countries are voting on but there are some descriptions that are not detailed enough.
 
 
 
