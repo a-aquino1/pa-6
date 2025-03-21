@@ -229,8 +229,10 @@ Does the above information help us understand the voting issues of the UN over t
 Finally we have the `issues` data which provides a more general description for each vote on specific issues.  Note that not all issues are included in the data set, just the ones related to the 6 issues below:
 
 ```{r}
+#| label: Count-Issues
 issues |> 
   count(issue)
+#run given code
 ```
 
 It would be helpful to use the `issues` data with the `roll_calls` data to be able to better understand the voting trends within the UN on at least these 6 issues. To do this, we need to join the data.  
@@ -242,40 +244,45 @@ Now let's join our data together to get a better idea of how the UN has voted ov
 First, look at the number of rows in `issues` and `roll_calls` - do they match? What does this indicate?
 
 ```{r}
+#| label: dim-issues-and-roll_calls
 dim(issues)
 dim(roll_calls)
 ```
 
 
-> Insert Answer Here
+> They do not match as it indicates they have different voting trends
 
 
 
 Now let's try joining the `roll_calls` with the `issues` data.  Compare the following codes to join the data. Describe what each one does and how it differs from the others as a comment in the code chunk.  You might need to reference the slides or reading for this week.
 
 ```{r}
+#| label: left-join
 roll_calls |> 
-  left_join(issues, by = "rcid") #description of join
+  left_join(issues, by = "rcid") #joining to the left table
 ```
 
 ```{r}
+#| label: right-join
 roll_calls |> 
-  right_join(issues, by = "rcid") #description of join
+  right_join(issues, by = "rcid") #joining to the right table
 ```
 
 ```{r}
+#| label: full-join
 roll_calls |> 
-  full_join(issues, by = "rcid") #description of join
+  full_join(issues, by = "rcid") #joining both tables completely
 ```
 
 ```{r}
+#| label: inner-join
 roll_calls |> 
-  inner_join(issues, by = "rcid") #description of join
+  inner_join(issues, by = "rcid") #joining tables based on related columns
 ```
 
 **If we are only interested in retaining the records associated with the `issues` labeled in our data, which join(s) should we use?**
 
-> Insert answer here
+> We would use the inner join to join the related columns for both tables and/or the left join as the 'issues' table is what the records are associated with.
 
 
 
